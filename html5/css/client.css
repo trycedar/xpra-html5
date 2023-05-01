@@ -5,7 +5,7 @@ body {
   padding: 0;
   margin: 0;
   overflow: hidden;
-  background-color: #021d3a;
+  background-color: transparent;
   background-image: url(../background.png);
   background-position: center center;
   background-repeat: no-repeat;
@@ -18,7 +18,7 @@ div.window canvas {
 }
 
 div.window canvas.gpu-trigger {
-  transform: transale3d(0,0,0); /* Refer to client.js */
+  transform: translate3d(0, 0, 0); /* Refer to client.js */
 }
 
 body.desktop {
@@ -86,7 +86,7 @@ canvas {
   overflow: hidden;
 }
 .window {
-  border: 1px;
+  border: 0px;
   position: absolute;
   padding: 0;
   overflow: hidden; /* required for radius clip */
@@ -106,7 +106,7 @@ canvas {
 
 .window.border {
   border-color: grey;
-  border-width: 1px;
+  border-width: 0px;
   border-style: solid;
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
   border-radius: 6px 6px 3px 3px;
