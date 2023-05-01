@@ -41,11 +41,7 @@ if (XpraVideoDecoderLoader.hasNativeDecoder()) {
   );
 }
 
-const all_encodings = new Set([
-  "void",
-  ...image_coding,
-  ...video_coding,
-]);
+const all_encodings = new Set(["void", ...image_coding, ...video_coding]);
 
 function send_decode_error(packet, error) {
   packet[7] = null;
@@ -243,13 +239,6 @@ onmessage = function (e) {
       });
       break;
     case "canvas":
-      console.log(
-        "canvas transfer for window",
-        data.wid,
-        ":",
-        data.canvas,
-        data.debug
-      );
       if (data.canvas) {
         window_decoders.set(
           data.wid,

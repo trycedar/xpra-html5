@@ -8,7 +8,7 @@
  */
 
 if (!Object.hasOwn) {
-    Object.hasOwn = Object.call.bind(Object.hasOwnProperty);
+  Object.hasOwn = Object.call.bind(Object.hasOwnProperty);
 }
 
 const Utilities = {
@@ -443,12 +443,12 @@ const Utilities = {
     return v.toString();
   },
 
-  u : function(v){
+  u: function (v) {
     const type = typeof v;
-      if (type === 'object' && v.constructor===Uint8Array) {
-        return v;
-      }
-     return StringToUint8(v.toString());
+    if (type === "object" && v.constructor === Uint8Array) {
+      return v;
+    }
+    return StringToUint8(v.toString());
   },
 
   ArrayBufferToBase64(uintArray) {
@@ -768,14 +768,16 @@ const LANGUAGE_TO_LAYOUT = {
   //"zu": ??
 };
 
+const shouldLog = false;
+
 function console_debug_safe() {
-  if (console) console.debug.apply(console, arguments);
+  if (console && shouldLog) console.debug.apply(console, arguments);
 }
 
 function console_error_safe() {
-  if (console) console.error.apply(console, arguments);
+  if (console && shouldLog) console.error.apply(console, arguments);
 }
 
 function console_log_safe() {
-  if (console) console.log.apply(console, arguments);
+  if (console && shouldLog) console.log.apply(console, arguments);
 }
