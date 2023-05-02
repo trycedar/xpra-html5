@@ -81,12 +81,6 @@
       "
     ></div>
 
-    <div id="progress" class="overlay" style="display: none">
-      <p id="progress-label"></p>
-      <p id="progress-details"></p>
-      <progress id="progress-bar" max="100" value="10"></progress>
-    </div>
-
     <div id="screen" style="width: 100%; height: 100%">
       <div id="float_menu">
         <ul class="Menu -horizontal">
@@ -472,49 +466,6 @@
           scale = override_width / window.innerWidth;
         }
 
-        let progress_timer;
-        const progress_value = 0;
-        let progress_offset = 0;
-        // show connection progress:
-        function connection_progress(state, details, progress) {
-          clog(
-            "connection_progress(",
-            state,
-            ", ",
-            details,
-            ", ",
-            progress,
-            ")"
-          );
-          if (progress >= 100) {
-            $("#progress").hide();
-          } else {
-            $("#progress").show();
-          }
-          $("#progress-bar").val(progress);
-          const progress_value = progress;
-          if (progress_timer) {
-            window.clearTimeout(progress_timer);
-            progress_timer = null;
-          }
-          if (progress < 100) {
-            progress_move_offset();
-          }
-        }
-        // the offset is just to make the user feel better
-        // nothing changes, but we just show a slow progress
-        function progress_move_offset() {
-          progress_timer = null;
-          progress_offset++;
-          $("#progress-bar").val(progress_value + progress_offset);
-          if (progress_offset < 9) {
-            progress_timer = window.setTimeout(
-              progress_move_offset,
-              (5 + progress_offset) * progress_offset
-            );
-          }
-        }
-
         let debug;
         const debug_categories = [];
         const categories = [
@@ -551,7 +502,6 @@
         client.steal = steal;
         client.reconnect = reconnect;
         client.swap_keys = swap_keys;
-        client.on_connection_progress = connection_progress;
         client.scroll_reverse_x = scroll_reverse_x;
         client.scroll_reverse_y = scroll_reverse_y;
         client.vrefresh = vrefresh;
